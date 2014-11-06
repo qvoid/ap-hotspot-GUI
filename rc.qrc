@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/disconnect.png</file>
+        <file>images/restart.png</file>
+        <file>images/sad.png</file>
+        <file>images/start.png</file>
+        <file>images/stop.png</file>
+        <file>images/wireless.png</file>
+        <file>cmd/checkSupported</file>
+        <file>cmd/initialInformation</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Check if the wireless card supports Access Point mode. This script won't work if it doesn't support it
+if [[ ! $(iw list 2>&1 | grep -A6 "Supported interface modes" | grep AP$) ]]; then
+    # Your wireless card or driver does not support Access Point mode
+     #supported="false";
+     echo 0
+else
+     #supported="true";
+     echo 1
+fi
+#echo "Supported: $supported"

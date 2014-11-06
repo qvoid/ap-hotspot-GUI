@@ -1,0 +1,40 @@
+#!/bin/bash
+
+user=$(whoami)
+#INTERFACE_NET=$(route | grep -iw "default" | awk '{print $NF}')
+# This kind of method will not print EOL(End Of Line)
+INTERFACE_NET=$(route | grep -iw "default" | awk '{printf "%s ", $NF}')
+INTERFACE_WLAN=$(iwconfig 2>&1 | grep "^wlan" | sed -e 's/ .*//g'| tail -n 1)
+
+
+# Check if Wireless is disabled
+check_network()
+{
+    #wlanStatus= "disconnected"
+    wlanStatus=2
+    if [[ $(iwconfig "$INTERFACE_WLAN" 2>&1 | grep "Tx-Power=off") ]]; then
+    # WiFi is disabled, please enable WiFi before running this script
+        #wlanStatus="disabled"
+        wlanStatus=0
+	    #exit 1
+    # Check if Wireless is enabled, but connected to a network
+    elif [[ ! $(iwconfig "$INTERFACE_WLAN" 2>&1 | grep "ESSID:off/any") && $(iwconfig "$INTERFACE_WLAN" 2>&1 | grep "ESSID:") ]]; then
+# Please disconnect WiFi before proceeding
+        #wlanStatus="connected"
+       wlanStatus=1
+	    #exit 1
+    fi
+}
+
+check_network
+
+#echo "User: $user"
+#echo "WLANstatus: $wlanStatus"
+#echo "WLAN: $INTERFACE_WLAN"
+#echo "NET: $INTERFACE_NET"
+
+#There may be two or more wlan interfaces, and zero too, so it can cause bug or error.
+#Also there may be two or more net interfaces, or zero when there is no interface connected to the internet.
+#Pay attention to the two kind of case above, since they can cause some unexpected bugs or error.
+echo "User:$user,WLANStatus:$wlanStatus,WLAN:$INTERFACE_WLAN,NET:$INTERFACE_NET"
+
