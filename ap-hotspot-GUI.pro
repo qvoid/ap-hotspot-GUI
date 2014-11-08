@@ -21,4 +21,6 @@ RESOURCES += \
     rc.qrc
 
 OTHER_FILES += \
-    ReadMe.md
+    ReadMe.md \
+    cmd/checkSupported \
+    cmd/initialInformation

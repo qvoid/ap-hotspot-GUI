@@ -86,7 +86,7 @@ Widget::Widget(QWidget *parent)
     passwordLineEdit->setFixedWidth(140);
     ssidLineEdit->setFixedWidth(passwordLineEdit->width());
     networkComboBox->setFixedWidth(passwordLineEdit->width());
-    //setFixedSize(sizeHint().width(),sizeHint().height());
+    setFixedSize(sizeHint().width(),sizeHint().height());
 
     //configuration files
     hotspotconfig = "/etc/ap-hotspot.conf";
@@ -157,7 +157,7 @@ bool Widget::IsSupport()
 {
     QProcess proc;
 
-    proc.start(":/cmd/checkSupported");
+    proc.start("/home/void/Desktop/ap-hotspot-GUI/cmd/checkSupported");
     proc.waitForStarted();
     proc.waitForFinished();
 
@@ -176,7 +176,7 @@ bool Widget::IsSupport()
 void Widget::GetInitInformation()
 {
     QProcess proc;
-    proc.start(":/cmd/initialInformation");
+    proc.start("/home/void/Desktop/ap-hotspot-GUI/cmd/initialInformation");
     proc.waitForStarted();
     proc.waitForFinished();
 
@@ -521,10 +521,10 @@ bool Widget::startHotspot()
     //startButton->setIcon(QIcon(":/images/restart.png"));
     stopButton->setEnabled(true);
     procAp = new QProcess(this);
-    procAp->start("ap-hotspot start");
-    if(!procAp->waitForFinished())
-        qDebug()<<"ap-hotspot hasnt start to work"<<endl;
-    qDebug()<<"ap-hotspot is now running at backend"<<endl;
+    procAp->startDetached("ap-hotspot start");
+    //if(!procAp->waitForFinished())
+    //    qDebug()<<"ap-hotspot hasnt start to work"<<endl;
+    //qDebug()<<"ap-hotspot is now running at backend"<<endl;
     return true;
 }
 

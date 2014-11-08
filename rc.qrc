@@ -6,7 +6,5 @@
         <file>images/start.png</file>
         <file>images/stop.png</file>
         <file>images/wireless.png</file>
-        <file>cmd/checkSupported</file>
-        <file>cmd/initialInformation</file>
     </qresource>
 </RCC>
