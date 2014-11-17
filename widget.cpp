@@ -157,7 +157,7 @@ bool Widget::IsSupport()
 {
     QProcess proc;
 
-    proc.start("/home/void/Desktop/ap-hotspot-GUI/cmd/checkSupported");
+    proc.start("/home/void/Desktop/ap-hotspot-GUI/cmd/ap-hotspot.sh check 2>/dev/null");
     proc.waitForStarted();
     proc.waitForFinished();
 
@@ -176,7 +176,7 @@ bool Widget::IsSupport()
 void Widget::GetInitInformation()
 {
     QProcess proc;
-    proc.start("/home/void/Desktop/ap-hotspot-GUI/cmd/initialInformation");
+    proc.start("/home/void/Desktop/ap-hotspot-GUI/cmd/ap-hotspot.sh vars 2>/dev/null");
     proc.waitForStarted();
     proc.waitForFinished();
 

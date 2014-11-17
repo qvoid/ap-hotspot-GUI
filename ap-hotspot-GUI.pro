@@ -23,4 +23,5 @@ RESOURCES += \
 OTHER_FILES += \
     ReadMe.md \
     cmd/checkSupported \
-    cmd/initialInformation
+    cmd/initialInformation \
+    cmd/ap-hotspot.sh
